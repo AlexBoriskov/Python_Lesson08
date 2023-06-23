@@ -10,7 +10,7 @@ def main_menu():
     print ("2. Коррекция контакта")
     print ("3. Удаление данных")
     print ("4. Поиск телефона по Фамилии")
-    print ("5. Поиск ФИО по телефону")
+    print ("5. Поиск контакта по телефону")
     print ("6. Показать все контакты")
     print ("7. Выход")
 
@@ -32,7 +32,7 @@ def main_menu():
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "5":
-        print ("Поиск ФИО по телефону")
+        find_contact()
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "6":
@@ -66,4 +66,14 @@ def all_contact():
     else: print ("Нет контактов")
     my_file.close()
 
+def find_contact():
+    find_phone = input("Введите телефон для поиска: ")
+    my_file = open(file_name, 'r')
+    lines = my_file.readlines()
+    for line in lines:
+        if find_phone in line:
+            print (line)
+        else: print ("Нет такого контакта")
+    my_file.close()
+    
 main_menu()
