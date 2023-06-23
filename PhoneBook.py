@@ -1,3 +1,5 @@
+import os
+
 file_name =  "Phone.txt"
 my_file = open(file_name, "a+", encoding = "utf-8")
 my_file.close()
@@ -34,7 +36,7 @@ def main_menu():
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "6":
-        print ("Показать телефонную книгу")
+        all_contact()
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "7": print ("Пока.")
@@ -54,5 +56,14 @@ def new_contact ():
     my_file.write(contact)
     my_file.close()
     print ("Создан новый контакт!")
+
+def all_contact():
+    my_file = open(file_name, "r")
+    if len (file_name) != 0:
+        lines = my_file.readlines()
+        for line in lines:
+            print (line)
+    else: print ("Нет контактов")
+    my_file.close()
 
 main_menu()
