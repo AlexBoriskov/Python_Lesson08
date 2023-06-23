@@ -20,7 +20,9 @@ def main_menu():
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "2":
-        print ("Коррекция контакта")
+        print ("\n1. Сменить фамилию по номеру")
+        print ("2. Сменить имя по номеру")
+        correct_contact()
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "3":
@@ -47,9 +49,7 @@ def main_menu():
 
 def new_contact ():
     second_name = input("Введите Фамилию: ")
-    second_name = Pravilo(second_name)
     first_name = input ("Введите Имя: ")
-    first_name = Pravilo(first_name)
     phone = input ("Введите номер телефона: ")
     emailID = input ("Введите почту: ")
     status = input ("Введите статус человека: ")
@@ -80,7 +80,6 @@ def find_contact():
 
 def find_phone():
     second_name = input("Введите фамилию для поиска: ")
-    second_name=Pravilo(second_name)
     my_file=open(file_name, 'r')
     lines = my_file.readlines()
     for line in lines:
@@ -90,10 +89,18 @@ def find_phone():
         else: print ("Нет такой фамилии в книжке")
     my_file.close()
 
-def Pravilo(word):
-    first_char = word[0].upper()
-    ostatok_char = word[1: ].lower()
-    word = first_char + ostatok_char
-    return (word)
+def correct_contact():
+    choose = input ("Выберите № действия: ")
+    my_file=open(file_name, 'a+')
+    if choose == "1":
+        data = input ("Введите телефон для поиска контакта: ")
+        new_data = input ("Новая фамилия: ")
+        lines = my_file.readlines()
+        for line in lines:
+            line = line.split()
+            if data in line:
+                line.replace(data, new_data)
+            else: print ("Нет такой контакта в книжке")
+    my_file.close()
 
 main_menu()
