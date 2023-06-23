@@ -47,7 +47,9 @@ def main_menu():
 
 def new_contact ():
     second_name = input("Введите Фамилию: ")
+    second_name = Pravilo(second_name)
     first_name = input ("Введите Имя: ")
+    first_name = Pravilo(first_name)
     phone = input ("Введите номер телефона: ")
     emailID = input ("Введите почту: ")
     status = input ("Введите статус человека: ")
@@ -78,6 +80,7 @@ def find_contact():
 
 def find_phone():
     second_name = input("Введите фамилию для поиска: ")
+    second_name=Pravilo(second_name)
     my_file=open(file_name, 'r')
     lines = my_file.readlines()
     for line in lines:
@@ -86,5 +89,11 @@ def find_phone():
             print (line[2])
         else: print ("Нет такой фамилии в книжке")
     my_file.close()
+
+def Pravilo(word):
+    first_char = word[0].upper()
+    ostatok_char = word[1: ].lower()
+    word = first_char + ostatok_char
+    return (word)
 
 main_menu()
