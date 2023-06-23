@@ -28,7 +28,7 @@ def main_menu():
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == '4':
-        print ("Поиск телефона по Фамилии")
+        find_phone()
         enter = input ("Нажмите Enter для продолжения...")
         main_menu()
     elif choose == "5":
@@ -75,5 +75,16 @@ def find_contact():
             print (line)
         else: print ("Нет такого контакта")
     my_file.close()
-    
+
+def find_phone():
+    second_name = input("Введите фамилию для поиска: ")
+    my_file=open(file_name, 'r')
+    lines = my_file.readlines()
+    for line in lines:
+        line = line.split()
+        if second_name in line:
+            print (line[2])
+        else: print ("Нет такой фамилии в книжке")
+    my_file.close()
+
 main_menu()
